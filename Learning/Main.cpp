@@ -23,7 +23,7 @@ bool running = true;
 void _clear_console()
 {
 #if defined _WIN32
-	system("cls");
+    system("cls");
 #endif
 }
 
@@ -31,49 +31,49 @@ void _clear_console()
 int main()
 {
 
-	std::srand(time(NULL));
+    std::srand(time(NULL));
 
-	Grid* grid = new Grid(5, 5, 'S');
+    Grid* grid = new Grid(5, 5, 'S');
 
-	std::cout << "Ships: " << grid->m_num_ships << std::endl;
+    std::cout << "Ships: " << grid->m_num_ships << std::endl;
 
-	while (!grid->all_ships_sunk())
-	{
+    while (!grid->all_ships_sunk())
+    {
 
-		grid->print();
+        grid->print();
 
-		int x = 0, y = 0;
-		std::cout << "Ship X: ";
-		std::cin >> x;
-		std::cout << "Ship Y: ";
-		std::cin >> y;
+        int x = 0, y = 0;
+        std::cout << "Ship X: ";
+        std::cin >> x;
+        std::cout << "Ship Y: ";
+        std::cin >> y;
 
-		if (grid->within_bounds(x, y))
-		{
+        if (grid->within_bounds(x, y))
+        {
 
-			_clear_console();
+            _clear_console();
 
-			if (grid->handle_fire(x, y))
-			{
-				std::cout << "You hit something! Nice job!\n";
-			}
-			else
-			{
-				std::cout << "Hmmm....\n";
-			}
+            if (grid->handle_fire(x, y))
+            {
+                std::cout << "You hit something! Nice job!\n";
+            }
+            else
+            {
+                std::cout << "Hmmm....\n";
+            }
 
-			continue;
-		}
+            continue;
+        }
 
-		std::cout << "Invalid input!\n";
-		break;
+        std::cout << "Invalid input!\n";
+        break;
 
-	}
+    }
 
-	if (grid->all_ships_sunk())
-		std::cout << "You win! Yay!!!";
+    if (grid->all_ships_sunk())
+        std::cout << "You win! Yay!!!";
 
-	std::cin.get();
+    std::cin.get();
 
-	return 0;
+    return 0;
 }
